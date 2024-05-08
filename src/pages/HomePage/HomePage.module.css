@@ -1,0 +1,16 @@
+.title {
+  text-align: center;
+  color: #333;
+  margin-top: 100px;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.icon svg {
+  font-size: 70px;
+  color: rgb(147, 200, 225);
+}
