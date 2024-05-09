@@ -1,5 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useId } from "react";
+import { useRef } from "react";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { apiAddContact } from "../../redux/contactsOps";
@@ -22,10 +22,11 @@ const initialValues = {
   name: "",
   number: "",
 };
+
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const nameId = useId();
-  const numberId = useId();
+  const nameId = useRef();
+  const numberId = useRef();
 
   const handleSubmit = (values, actions) => {
     dispatch(apiAddContact({ ...values }));
@@ -39,24 +40,24 @@ const ContactForm = () => {
       validationSchema={ContactFormSchema}
     >
       <Form className={css.form}>
-        <label className={css.label} htmlFor={nameId}>
+        <label className={css.label} htmlFor={nameId.current}>
           Name
         </label>
         <Field
           className={css.formInput}
           type="text"
           name="name"
-          id={nameId}
+          id={nameId.current}
         ></Field>
         <ErrorMessage className={css.formError} component="span" name="name" />
-        <label className={css.label} htmlFor={numberId}>
+        <label className={css.label} htmlFor={numberId.current}>
           Number
         </label>
         <Field
           className={css.formInput}
           type="tel"
           name="number"
-          id={numberId}
+          id={numberId.current}
         ></Field>
         <ErrorMessage
           className={css.formError}
